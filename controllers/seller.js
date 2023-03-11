@@ -1,53 +1,50 @@
 const db = require("../connection/postgres");
 
-async function GetSeller(req,res){
-    try{
+async function GetSeller(req, res) {
+    try {
         const seller = await db.Seller.findOne({
             include: [
                 {
-                  model: db.User,
-                //   required: true
+                    model: db.User,
                 },
                 {
-                  model: db.Address,
+                    model: db.Address,
                 },
             ],
-            // include: db.User,
-            // include: db.Address,
-         where: { id: req.params.id }
+            where: { id: req.params.id }
         })
-        return res.status(200).json({message: seller});
+        return res.status(200).json({ message: seller });
     }
-    catch(err){
+    catch (err) {
         return res.status(500).json({ message: err.message });
     }
 }
-async function CreateSellerAddress(req,res){
-    try{
-        console.log("req",req.body);
+async function CreateSellerAddress(req, res) {
+    try {
+        console.log("req", req.body);
         let sellerAddress = await db.Address.create(req.body)
-        return res.status(200).json({message: sellerAddress});
+        return res.status(200).json({ message: sellerAddress });
     }
-    catch(err){
-        console.log("error",err);
+    catch (err) {
+        console.log("error", err);
         return res.status(500).json({ message: err.message });
     }
 }
-async function GetSellerAddress(req,res){
-    try{
-        const seller = await db.Seller.findOne({include: db.Address})
-        return res.status(200).json({message: seller});
+async function GetSellerAddress(req, res) {
+    try {
+        const seller = await db.Seller.findOne({ include: db.Address })
+        return res.status(200).json({ message: seller });
     }
-    catch(err){
+    catch (err) {
         return res.status(500).json({ message: err.message });
     }
 }
 
-module.exports={GetSeller,CreateSellerAddress,GetSellerAddress}
+module.exports = { GetSeller, CreateSellerAddress, GetSellerAddress }
 
 
 
-// User.findAll({ 
+// User.findAll({
 //     include: [{
 //       model: Role,
 //       as: 'Roles'

@@ -1,10 +1,10 @@
 
-const router=require('express').Router()//import express
+const router = require('express').Router()//import express
 
-const seller =require('../controllers/seller')
+const seller = require('../controllers/seller')
 
-router.get('/seller/:id',seller.GetSeller)
-router.get('/seller-address/:id',seller.GetSellerAddress)
-router.post('/seller-address',seller.CreateSellerAddress)
+router.get('/seller/:id', seller.GetSeller)
+router.get('/seller-address/:id', seller.GetSellerAddress)
+router.post('/seller-address', seller.CreateSellerAddress)
 
-module.exports=router
+module.exports = router
