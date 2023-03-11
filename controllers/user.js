@@ -1,15 +1,20 @@
 const db = require("../connection/postgres");
-const { sequelize } = require("../connection/postgres");
-const bcrypt =require('bcrypt')
-
+const bcrypt =require('bcrypt');
 //CreateUser
 async function CreateUser(req,res){
 
     try{
     let password = await bcrypt.hash(req.body.password, 10)
     req.body.password = password
+    console.log("pass",password);
     let user = await db.User.create(req.body)
-    return res.status(200).json({ message: user});
+
+    console.log("user",user);
+    //create seller 
+
+    let seller = await db.Seller.create({'name':user.name,'user_id':user.id,'country':user.country})
+      console.log("seller",seller);
+      return res.status(200).json({ message: user});
     }
 
     catch (err) {
@@ -21,6 +26,7 @@ async function CreateUser(req,res){
 async function GetUserById (req,res){
    try{
         const user = await db.User.findOne({
+         include: db.Seller,
         where: { id: req.params.id }
      });   
      return res.status(200).json({ 
@@ -36,10 +42,8 @@ async function GetUserById (req,res){
 //GetAllUser
 async function GetAllUser (req,res){
    try{
-        const users = await db.User.findAll();   
-         return res.status(200).json({ 
-         message: users
-    });
+        const users = await db.User.findAll({  include: db.Seller});   
+         return res.status(200).json({  message: users });
     }
 
    catch(err){
