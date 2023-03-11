@@ -15,10 +15,10 @@ db.User =require('../schema/user')(database,Sequelize);
 db.Seller =require('../schema/seller')(database,Sequelize);
 db.Address =require('../schema/address')(database,Sequelize);
 
-//edges
-// db.User.hasMany(db.Seller, {foreignKey: 'user_id'});
-// db.Seller.hasOne(db.User, {foreignKey: 'id'});
-// db.Seller.hasMany(db.Address, {foreignKey: 'seller_id'});
-// db.Address.hasMany(db.Seller, {foreignKey: 'id'});
+// edges
+db.User.hasMany(db.Seller, {foreignKey: 'user_id'});
+db.Seller.hasOne(db.User, {foreignKey: 'id'});
+db.Seller.hasMany(db.Address, {foreignKey: 'seller_id'});
+db.Address.hasMany(db.Seller, {foreignKey: 'id'});
 
 module.exports=db
