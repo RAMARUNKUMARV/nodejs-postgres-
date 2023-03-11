@@ -26,7 +26,10 @@ async function CreateUser(req,res){
 async function GetUserById (req,res){
    try{
         const user = await db.User.findOne({
-         include: db.Seller,
+         include: {
+            model: db.Seller,
+            include: db.Address
+          },
         where: { id: req.params.id }
      });   
      return res.status(200).json({ 
