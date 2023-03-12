@@ -7,7 +7,7 @@ const user = require('./routes/user')
 const seller = require('./routes/seller')
 var app = express()
 
-db.sequelize.sync()//db connected or not
+db.database.sync()
   .then(() => {
     console.log("connected database.");
   })

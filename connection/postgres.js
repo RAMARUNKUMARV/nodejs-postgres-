@@ -9,7 +9,7 @@ const database = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 const db = {};
 
 db.Sequelize = Sequelize;
-db.sequelize = database;
+db.database = database;
 
 db.User = require('../schema/user')(database, Sequelize);
 db.Seller = require('../schema/seller')(database, Sequelize);

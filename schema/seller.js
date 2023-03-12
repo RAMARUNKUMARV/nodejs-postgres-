@@ -1,25 +1,29 @@
 const db = require("../connection/postgres");
 
 
-module.exports = (sequelize, Sequelize) => {
+module.exports = (sequelize, DataType) => {
     const Seller = sequelize.define('sellers', {
         id: {
-            type: Sequelize.INTEGER,
+            type: DataType.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
         name: {
-            type: Sequelize.STRING,
+            type: DataType.STRING,
             allowNull: false
         },
         country: {
-            type: Sequelize.STRING,
+            type: DataType.STRING,
             allowNull: true
         },
         user_id: {
-            type: Sequelize.INTEGER,
+            type: DataType.INTEGER,
             allowNull: true
         },
     },);
+    // Seller.associate = db => {
+    //     db.Seller.hasOne(db.User, { foreignKey: 'id' });
+    //     db.Seller.hasMany(db.Address, { foreignKey: 'seller_id' });
+    // }
     return Seller
 }
