@@ -1,26 +1,26 @@
 const db = require("../connection/postgres");
 
-module.exports = (sequelize, DataType) => {
-    const User = sequelize.define('users', {
+module.exports = (database, Sequelize) => {
+    const User = database.define('users', {
         id: {
-            type: DataType.INTEGER,
+            type: Sequelize.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
         name: {
-            type: DataType.STRING,
+            type: Sequelize.STRING,
             allowNull: false
         },
         password: {
-            type: DataType.STRING,
+            type: Sequelize.STRING,
             allowNull: false
         },
         is_active: {
-            type: DataType.BOOLEAN,
+            type: Sequelize.BOOLEAN,
             allowNull: false
         },
         country: {
-            type: DataType.STRING,
+            type: Sequelize.STRING,
             allowNull: true
         },
     },);

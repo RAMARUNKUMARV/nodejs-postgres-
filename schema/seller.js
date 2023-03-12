@@ -1,23 +1,23 @@
 const db = require("../connection/postgres");
 
 
-module.exports = (sequelize, DataType) => {
-    const Seller = sequelize.define('sellers', {
+module.exports = (database, Sequelize) => {
+    const Seller = database.define('sellers', {
         id: {
-            type: DataType.INTEGER,
+            type: Sequelize.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
         name: {
-            type: DataType.STRING,
+            type: Sequelize.STRING,
             allowNull: false
         },
         country: {
-            type: DataType.STRING,
+            type: Sequelize.STRING,
             allowNull: true
         },
         user_id: {
-            type: DataType.INTEGER,
+            type: Sequelize.INTEGER,
             allowNull: true
         },
     },);
