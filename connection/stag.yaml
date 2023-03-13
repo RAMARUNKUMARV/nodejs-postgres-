@@ -1,0 +1,21 @@
+database:
+    # dsn: host=tradewinds-sql2.postgres.database.azure.com user=admin2 password=Tradewinds$123 dbname=tradewinds port=5432 sslmode=require
+    dsn: host=localhost user=postgres password=postgres dbname=demo port=5432 sslmode=disable dialect=postgres
+
+jwt:
+    secret: 8b1f451e81e3d5c904dbf81d8769179bed501206192c06ed7a8a4772467ee7c0
+    expiry: 15
+    expiry_refresh: 1440
+
+pagination:
+    page: 0
+    limit: 10
+
+email:
+    host: smtp.gmail.com
+    port: 587
+    username: 
+    password: 
+    from: 
+PORT:
+    port : 8000
