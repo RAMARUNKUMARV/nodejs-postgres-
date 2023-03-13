@@ -1,5 +1,6 @@
 const db = require("../connection/postgres");
 const bcrypt = require('bcrypt');
+
 //CreateUser
 async function CreateUser(req, res) {
 
@@ -58,9 +59,11 @@ async function GetAllUser(req, res) {
 //UpdateUser
 async function UpdateUser(req, res) {
    try {
-      const users = await db.User.update({
-         where: { id: req.params.id }
-      });
+      const users = await db.User.update(
+         req.body,
+         { where: { id: req.params.id } }
+      );
+
       return res.status(200).json({ message: users });
    }
 
@@ -76,6 +79,7 @@ async function DeleteUser(req, res) {
       const users = await db.User.destroy({
          where: { id: req.params.id }
       });
+
       return res.status(200).json({ message: users });
    }
 

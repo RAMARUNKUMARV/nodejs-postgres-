@@ -13,6 +13,10 @@ async function GetSeller(req, res) {
             ],
             where: { id: req.params.id }
         })
+        // console.log("length",seller.addresses.length);
+        // if (!seller.addresses.length==0){
+        // console.log("seller---------------------------",seller.addresses[0].name);
+        // }
         return res.status(200).json({ message: seller });
     }
     catch (err) {
